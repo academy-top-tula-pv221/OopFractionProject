@@ -20,9 +20,15 @@ public:
 	//Fraction operator+(Fraction fobj);
 	//Fraction operator+(int number);
 
-	friend Fraction operator+(Fraction& f1, Fraction& f2);
+	Fraction operator-();
+	Fraction operator++();
+	Fraction operator++(int);
+
+	friend Fraction operator+(const Fraction& f1, const Fraction& f2);
 	friend Fraction operator+(Fraction& f, int number);
 	friend Fraction operator+(int number, Fraction& f);
+
+	friend Fraction operator-(Fraction& f1, Fraction& f2);
 
 	friend bool operator<(Fraction& f1, Fraction& f2);
 	friend bool operator<(Fraction& f, int number);
@@ -30,6 +36,8 @@ public:
 	friend bool operator<(Fraction& f, double number);
 	friend bool operator<(double number, Fraction& f);
 
+	friend std::ostream& operator<<(std::ostream& out, const Fraction& f);
+	friend std::istream& operator>>(std::istream& in, Fraction& f);
 
 
 	void Del(Fraction fobj);

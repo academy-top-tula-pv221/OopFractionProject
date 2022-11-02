@@ -8,16 +8,17 @@ int main()
     Fraction f(3, 5);
     Fraction f1(4, 7);
 
-    f.Print(); 
-    std::cout << "\n";
+    std::cout << "Our fraction is: " << f << "\n";
 
-    Fraction f2 = f + f1; // f.Plus(f1);
+    int n, m;
+    std::cin >> n >> f >> m;
+    std::cout << n << " " << f << " " << m << "\n";
 
-    /*f.Add(f1);
-    f.Print();
-    std::cout << "\n";*/
 
-    //Fraction f3 = f.Add(f1);
+
+    //Fraction f2;
+    // f.Plus(f1);
+
     
 
 }

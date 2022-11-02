@@ -25,6 +25,24 @@ Fraction Fraction::Plus(Fraction fobj)
 	return fresult;
 }
 
+Fraction Fraction::operator-()
+{
+	return Fraction(-this->numerator, this->denominator);
+}
+
+Fraction Fraction::operator++()
+{
+	this->numerator += this->denominator;
+	return *this;
+}
+
+Fraction Fraction::operator++(int)
+{
+	Fraction save(this->numerator, this->denominator);
+	++(*this);
+	return save;
+}
+
 //Fraction Fraction::operator+(Fraction fobj)
 //{
 //	Fraction fresult;
@@ -55,7 +73,7 @@ Fraction Fraction::Minus(Fraction fobj)
 	return fresult;
 }
 
-Fraction operator+(Fraction& f1, Fraction& f2)
+Fraction operator+(const Fraction& f1, const Fraction& f2)
 {
 	Fraction fresult;
 	fresult.numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
@@ -65,13 +83,20 @@ Fraction operator+(Fraction& f1, Fraction& f2)
 
 Fraction operator+(Fraction& f, int number)
 {
-	Fraction f2(number, 1);
-	return f + f2;
+	return f + Fraction(number, 1);
 }
 
 Fraction operator+(int number, Fraction& f)
 {
 	return f + number;
+}
+
+Fraction operator-(Fraction& f1, Fraction& f2)
+{
+	Fraction fresult;
+	fresult.numerator = f1.numerator * f2.denominator - f1.denominator * f2.numerator;
+	fresult.denominator = f1.denominator * f2.denominator;
+	return fresult;
 }
 
 bool operator<(Fraction& f1, Fraction& f2)
@@ -98,4 +123,17 @@ bool operator<(Fraction& f, double number)
 bool operator<(double number, Fraction& f)
 {
 	return number < (double)f.numerator / f.denominator;
+}
+
+std::ostream& operator<<(std::ostream& out, const Fraction& f)
+{
+	out << "[" << f.numerator << "/" << f.denominator << "]";
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, Fraction& f)
+{
+	in >> f.numerator;
+	in >> f.denominator;
+	return in;
 }
